@@ -24,8 +24,12 @@ function Sistema(){
     }
     this.eliminarUsuario =function(nick){
         if(this.usuarios[nick]){
-            
+            delete this.usuarios[nick];
         }
+    }
+    this.numeroUsuarios=function(){
+        let lista=Object.keys(this.usuarios);
+        return lista.length;
     }
 
   
