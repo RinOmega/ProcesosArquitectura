@@ -4,7 +4,7 @@ const app = express();
 const modelo = require("./servidor/modelo.js"); // esta linea es la que estaba comentada
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static(__dirname + "/cliente/index.html")); // __dirname + "/"
+app.use(express.static(__dirname + "/")); // __dirname + "/"
 
 let sistema = new modelo.Sistema();
 

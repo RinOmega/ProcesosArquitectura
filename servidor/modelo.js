@@ -1,8 +1,15 @@
 function Sistema() {
     this.usuarios = {};
     this.agregarUsuario = function (nick) {
-        this.usuarios[nick] = new Usuario(nick);
-        //agregar que si el usuario existe, se lo avisa
+        let res = { "nick": -1 };
+        if (!this.usuarios[nick]) {
+            this.usuarios[nick] = new Usuario(nick);
+            res.nick = nick;
+        }
+        else {
+            console.log("el nick " + nick + " está en uso");
+        }
+        return res;
     }
 
     this.obtenerUsuarios = function () {
@@ -18,6 +25,7 @@ function Sistema() {
     this.eliminarUsuario = function (nick) {
         if(this.usuarios[nick]){
             delete this.usuarios[nick];
+            console.log("Usuario eliminado")
         }
         else {
             console.log("El usuario no existe")
@@ -26,18 +34,17 @@ function Sistema() {
     }
 
     this.numeroUsuarios = function () {
-        if (Object.keys(this.usuarios)) {
-            return Object.keys(this.usuarios).length
+        if (Object.keys(this.usuarios).length > 0) {
+            return Object.keys(this.usuarios).length + "";
         }
         else {
-            return 0;
+            return "0";
         }
-
     }
 
 }
 function Usuario(nick) {
-    this.nick = nick;
+    this.nick = nick;  
 }
 
 module.exports.Sistema=Sistema

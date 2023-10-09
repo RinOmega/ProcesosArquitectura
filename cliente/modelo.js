@@ -8,6 +8,7 @@ function Sistema() {
     */
 
     this.agregarUsuario = function (nick) {
+        
         let res = { "nick": -1 };
         if (!this.usuarios[nick]) {
             this.usuarios[nick] = new Usuario(nick);
@@ -59,28 +60,35 @@ function Sistema() {
     */
 
     this.eliminarUsuario = function (nick) {
-
-    }
-
-    /*
-    this.numeroUsuarios = function () {
-        if (Object.keys(this.usuarios)) {
-            return Object.keys(this.usuarios).length
+        if (this.usuarios[nick]) {
+            delete this.usuarios[nick];
+            console.log("El usuario ha sido eliminado")
+            return true;
         }
         else {
-            return 0;
+            console.log("El usuario no existe")
         }
 
     }
-    */
 
+    
     this.numeroUsuarios = function () {
+        if (Object.keys(this.usuarios).length > 0) {
+            return Object.keys(this.usuarios).length + "";
+        }
+        else {
+            return "0";
+        }
+    }
+    
+
+    /*this.numeroUsuarios = function () {
         let res = 0;
         if (Object.keys(this.usuarios)) {
             res = Object.keys(this.usuarios).length;
         }
         return res;
-    }
+    }*/
 
 }
 function Usuario(nick) {
