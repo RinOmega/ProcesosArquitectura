@@ -1,15 +1,9 @@
 function Sistema() {
     this.usuarios = {};
     this.agregarUsuario = function (nick) {
-        let res = { "nick": -1 };
-        if (!this.usuarios[nick]) {
-            this.usuarios[nick] = new Usuario(nick);
-            res.nick = nick;
-        }
-        else {
-            console.log("el nick " + nick + " está en uso");
-        }
-        return res;
+        this.usuarios[nick] = new Usuario(nick);
+        return this.usuarios[nick];
+        //TODO agregar que si el usuario existe, se lo avisa
     }
 
     this.obtenerUsuarios = function () {
@@ -44,7 +38,7 @@ function Sistema() {
 
 }
 function Usuario(nick) {
-    this.nick = nick;  
+    this.nick = nick;
 }
 
 module.exports.Sistema=Sistema

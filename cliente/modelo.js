@@ -34,18 +34,18 @@ function Sistema() {
         return res;
     }
 
-    /*
+    
     this.usuarioActivo = function (nick) { // otro -> "x" in sistema.usuarios
         return this.usuarios[nick] != undefined;
         //if (this.usuarios[nick] != undefined) return true;
         //else return false;
     }
-    */
-    this.usuarioActivo = function (nick) {
+    
+    /*this.usuarioActivo = function (nick) {
         let res = false;
         res = nick in Sistema.usuarios;
         return res;
-    }
+    }*/
 
     /*
     this.eliminarUsuario = function (nick) {
