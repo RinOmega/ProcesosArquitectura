@@ -26,4 +26,26 @@ function ControlWeb()
         let cadena='<h2 id ="mMsg">'+msg+'</h2>';
         $('#mMsg').append(cadena);
     }
+    
+   /* this.mostrarEliminarUsuario = function()
+    {
+        let cadena1 = 
+        `
+            <div class="form-group" id="mRU">
+                <label for="usr">Introduce el nombre:</label>
+                <input id="nickRU" type="text" class="form-control" id="usr">
+                <button id="btnRU" type="submit" class="btn btn-primary">Borrar</button>
+            </div>
+        `;
+
+        $("#eu").append(cadena1);
+        
+        $("#btnRU").on("click",function(){ 
+            let nick=$("#nickRU").val(); 
+            rest.eliminarUsuario(nick)
+            $("#mRU").remove();
+            console.log('Adiós')
+        })
+    }*/
+
 }

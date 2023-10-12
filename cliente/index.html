@@ -29,7 +29,7 @@
       <a class="nav-link" href="obtenerUsuarios">Obtener Usuarios</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Link 2</a>
+      <a class="nav-link" href="eliminarUsuario">Eliminar Usuario</a>
     </li>
 
     <!-- Dropdown -->
@@ -47,25 +47,29 @@
 </nav>
 <br>
 
-<div class="container">
-  <h2>Arquitectura base</h2>
-  <h3>Bienvenido</h3>
+<div class="position-relative padding-10px left-0">
+  <h2 class="text-left">Arquitectura base</h2>
+  <h3 class="text-left">Bienvenido</h3>
 </div>
 
-</body>
-</html>
 
-    
-</head>
+<div id="au"></div>
 
-<body>
-    
-    <div id="au"></div>
-    <script>
-        rest=new ClienteRest();
-        cw=new ControlWeb();
-        cw.mostrarAgregarUsuario();
-    </script>
+<script>
+  //AGREGAR USUARIO
+    rest=new ClienteRest();
+    cw=new ControlWeb();
+    cw.mostrarAgregarUsuario();
+</script>
+
+<div id="eu"></div>
+
+<!--<script>
+   //ELIMINAR USUARIO
+    rest=new ClienteRest();
+    cw=new ControlWeb();
+    cw.mostrarEliminarUsuario();
+</script> -->
 
     
 </body>
