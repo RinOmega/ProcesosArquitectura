@@ -59,7 +59,7 @@
 Agregar usuario: no registra usuarios repetidos pero muestra el mensaje como si lo registrara
 */
 function ClienteRest(){
-    this.agregarUsuario=function(nick){
+    /*this.agregarUsuario=function(nick){
         var cli=this;
         $.getJSON("/agregarUsuario/"+nick,function(data){
         if (data.nick!=-1){
@@ -88,7 +88,23 @@ function ClienteRest(){
         },
         contentType:'application/json'
         })
-    }
+    }*/
+    this.agregarUsuario=function(nick){
+        var cli=this;
+        $.getJSON("/agregarUsuario/"+nick,function(data){
+        let msg="El nick "+nick+" está ocupado";
+        if (data.nick!=-1){
+        console.log("Usuario "+nick+" ha sido registrado");
+        msg="Bienvenido al sistema, "+nick;
+        //localStorage.setItem("nick",nick);
+        $.cookie("nick",nick);
+        }
+        else{
+        console.log("El nick ya está ocupado");
+        }
+        cw.mostrarMsg(msg);
+        });
+        }
     this.obtenerUsuarios= function () {
         var cli = this;
         $.getJSON("/obtenerUsuarios/", function (data) {
