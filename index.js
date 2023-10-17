@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + "/")); // __dirname + "/"
 app.use(cookieSession({
-    name: 'Batalla Naval',
+    name: 'Gestion usuario',
     keys: ['key1', 'key2']
    }));
 app.use(passport.initialize());
