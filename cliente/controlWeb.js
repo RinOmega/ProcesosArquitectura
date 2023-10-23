@@ -66,11 +66,12 @@ function ControlWeb()
         //let cw=new ControlWeb();
         let nick=$.cookie("nick");
         if (nick){
-        cw.mostrarMsg("Bienvenido al sistema, "+nick);
+            cw.mostrarMsg("Bienvenido al sistema, "+nick);
         //cw.mostrarMsg("Hola")
         }
         else{
-        cw.mostrarAgregarUsuario();
+            cw.mostrarAgregarUsuario();
+            cw.init();
             }
         }
     
