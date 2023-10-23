@@ -1,9 +1,21 @@
-function Sistema() {
-    this.usuarios = {};
+const datos=require("./cad.js")
+
+
+function Sistema(test) {
+    this.usuarios = {}; //this.usuarios[]
+    this.test=test;
+    this.cad= new datos.CAD();
     this.agregarUsuario = function (nick) {
         this.usuarios[nick] = new Usuario(nick);
         return this.usuarios[nick];
         //TODO agregar que si el usuario existe, se lo avisa
+    }
+
+    this.obtenerOCrearUsuario=function(email){
+        this.cad.buscarOCrearUsuario(email,function(res){
+            console.log("usuario "+res.email+" está registrado en el sistema");
+
+        });
     }
 
     this.obtenerUsuarios = function () {
@@ -34,6 +46,12 @@ function Sistema() {
         else {
             return "0";
         }
+    }
+    
+    if(!this.test){
+    this.cad.conectar(function(){
+        console.log("Conectado a Mongo Atlas");
+        });
     }
 
 }
