@@ -7,8 +7,8 @@ passport.deserializeUser(function(user, done) {
  done(null, user);
 });
 passport.use(new GoogleStrategy({
- clientID: "",
- clientSecret: "",
+    clientID: "321547850513-6e6ia32stia0j52a7vqg9q4osecim06p.apps.googleusercontent.com",
+    clientSecret: "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",
  callbackURL: "http://localhost:3000/google/callback"
  },
  function(accessToken, refreshToken, profile, done) {
