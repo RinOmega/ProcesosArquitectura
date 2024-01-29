@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recetario</title>
+    <style>
+        body {
+            background-image: url('./cliente/img/fondo-inicio.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: #fff;
+        }
+
+        h1 {
+            color: #0e0e0e;
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 50px;
+        }
+
+
+        select {
+            padding: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            width: 100%;
+            border: none;
+            border-radius: 4px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        #recetaInfo {
+            display: none;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        #comentarios {
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        textarea {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        #btnComentar {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+
+        #btnComentar:hover {
+            background-color: #0056b3;
+        }
+
+        #comentariosLista {
+            list-style: none;
+            padding: 0;
+        }
+
+        #comentariosLista li {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: #fff;
+        }
+
+        label {
+            color: #0e0e0e;
+            display: block;
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Sistema</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" onclick="cw.salir()" href="#">Cerrar Sesión</a>
+            </li>
+        </ul>
+    </nav>
+
+    <h1>Recetario</h1>
+
+    <label for="recetas">Selecciona una receta:</label>
+    <select id="recetas" onchange="mostrarReceta()">
+        <option value="" disabled selected>Elige una receta</option>
+        <option value="pasta">Pasta con salsa de tomate</option>
+        <option value="ensalada">Ensalada César</option>
+        <option value="pollo_asado">Pollo Asado con Verduras</option>
+        <option value="lasana">Lasaña de Carne</option>
+        <option value="ensalada_frutas">Ensalada de Frutas</option>
+        <option value="tacos">Tacos de Carne</option>
+        <option value="arroz_mariscos">Arroz con Mariscos</option>
+    </select>
+
+    <div id="recetaInfo">
+        <h2 id="nombreReceta"></h2>
+        <img id="imagenReceta" src="" alt="Imagen de la receta">
+        <h3>Ingredientes:</h3>
+        <ul id="ingredientesReceta"></ul>
+        <h3>Preparación:</h3>
+        <p id="preparacionReceta"></p>
+
+
+        <div id="comentarios">
+            <h3>Comentarios:</h3>
+            <textarea id="nuevoComentario" placeholder="Escribe tu comentario"></textarea>
+            <button id="btnComentar" onclick="agregarComentario()">Comentar</button>
+            <ul id="comentariosLista"></ul>
+        </div>
+    </div>
+
+    <script>
+        function mostrarReceta() {
+            var recetas = {
+                pasta: {
+                    nombre: "Pasta con salsa de tomate",
+                    imagen: "./cliente/img/espaguetis-rojos-con-tomate.jpg",
+                    ingredientes: ["Pasta", "Salsa de tomate", "Aceite de oliva", "Ajo", "Sal", "Pimienta"],
+                    preparacion: "Hervir la pasta según las instrucciones del paquete. Calentar el aceite de oliva en una sartén, agregar el ajo picado y cocinar hasta que esté dorado. Añadir la salsa de tomate, salpimentar al gusto. Mezclar la salsa con la pasta y servir."
+                },
+                ensalada: {
+                    nombre: "Ensalada César",
+                    imagen: "./cliente/img/ensalada-cesar.jpg",
+                    ingredientes: ["Lechuga romana", "Crutones", "Queso parmesano", "Pechuga de pollo", "Salsa César"],
+                    preparacion: "Lavar y cortar la lechuga. Cocinar la pechuga de pollo y cortarla en tiras. Mezclar la lechuga con los crutones, el queso parmesano y las tiras de pollo. Agregar la salsa César y mezclar bien."
+                },
+                pollo_asado: {
+                    nombre: "Pollo Asado con Verduras",
+                    imagen: "./cliente/img/pollo-asados-con-verduras.jpg",
+                    ingredientes: ["Pechuga de pollo", "Zanahorias", "Papas", "Cebolla", "Ajo", "Aceite de oliva", "Hierbas secas"],
+                    preparacion: "Marinar las pechugas de pollo con aceite de oliva, ajo picado y hierbas secas. Cortar las verduras en trozos. Colocar el pollo y las verduras en una bandeja para hornear. Hornear hasta que el pollo esté dorado y las verduras estén tiernas."
+                },
+                lasana: {
+                    nombre: "Lasaña de Carne",
+                    imagen: "./cliente/img/lasaña-carne.jpg",
+                    ingredientes: ["Carne molida", "Salsa de tomate", "Queso ricotta", "Queso mozzarella", "Queso parmesano", "Pasta de lasaña"],
+                    preparacion: "Cocinar la carne molida y mezclar con salsa de tomate. En una fuente para horno, hacer capas de noodles de lasagna, carne, ricotta y quesos. Hornear hasta que esté burbujeante y dorado."
+                },
+                ensalada_frutas: {
+                    nombre: "Ensalada de Frutas",
+                    imagen: "./cliente/img/ensalada-de-frutas.jpg",
+                    ingredientes: ["Fresas", "Piña", "Uvas", "Arándanos", "Miel", "Menta"],
+                    preparacion: "Cortar las frutas en trozos. Mezclar las frutas en un tazón. Rociar con miel y decorar con hojas de menta fresca."
+                },
+                tacos: {
+                    nombre: "Tacos de Carne",
+                    imagen: "./cliente/img/tacos-carne.jpg",
+                    ingredientes: ["Carne de res", "Tortillas de maíz", "Cebolla", "Cilantro", "Aguacate", "Limón"],
+                    preparacion: "Cocinar la carne de res y sazonar al gusto. Calentar las tortillas de maíz. Armar los tacos con la carne, cebolla, cilantro y aguacate. Servir con limón."
+                },
+                arroz_mariscos: {
+                    nombre: "Arroz con Mariscos",
+                    imagen: "./cliente/img/arroz-marisco.jpg",
+                    ingredientes: ["Arroz", "Camarones", "Calamares", "Mejillones", "Cebolla", "Ajo", "Pimiento", "Tomate", "Caldo de pescado"],
+                    preparacion: "En una sartén, sofreír la cebolla, ajo, pimiento y tomate. Agregar los mariscos y cocinar hasta que estén hechos. Cocinar el arroz por separado. Mezclar los mariscos con el arroz y agregar caldo de pescado según sea necesario."
+                },
+            };
+
+            var recetaSeleccionada = document.getElementById("recetas").value;
+            var recetaInfo = recetas[recetaSeleccionada];
+
+            if (recetaInfo) {
+                document.getElementById("nombreReceta").innerText = recetaInfo.nombre;
+                document.getElementById("imagenReceta").src = recetaInfo.imagen;
+                document.getElementById("ingredientesReceta").innerHTML = recetaInfo.ingredientes.map(ingrediente => "<li>" + ingrediente + "</li>").join("");
+                document.getElementById("preparacionReceta").innerText = recetaInfo.preparacion;
+                document.getElementById("recetaInfo").style.display = "block";
+                document.getElementById("nuevoComentario").value = "";
+                document.getElementById("comentariosLista").innerHTML = "";
+            } else {
+                document.getElementById("recetaInfo").style.display = "none";
+            }
+        }
+
+        function agregarComentario() {
+            var nuevoComentario = document.getElementById("nuevoComentario").value;
+            if (nuevoComentario.trim() !== "") {
+                var comentarioItem = document.createElement("li");
+                comentarioItem.innerText = nuevoComentario;
+                document.getElementById("comentariosLista").appendChild(comentarioItem);
+                document.getElementById("nuevoComentario").value = "";
+            }
+        }
+    </script>
+</body>
+
+</html>

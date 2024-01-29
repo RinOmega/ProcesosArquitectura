@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+
+    <div id="fmLogin">
+        <form>
+            <div class="form-group">
+                <label for="email">Direccion email:</label>
+                <input type="email" class="form-control" placeholder="Introduce tu email" id="email">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Contraseña:</label>
+                <input type="password" class="form-control" placeholder="Introduce tu contraseña" id="pwd">
+            </div>
+            <button type="submit" id="btnLogin">Inciar sesion</button>
+            <a class="nav-link" onclick="cw.mostrarRegistro()" href="#">Pulsa aquí para registrarte</a>
+            <div id="googleSignIn">
+                <a href="/auth/google">
+                    <img src="./cliente/img/btn_google_signin_light_pressed_web.png" alt="Google Sign-In">
+                </a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
